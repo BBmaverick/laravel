@@ -1,0 +1,40 @@
+aggregatecontroller.php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Client;
+class aggregatecontroller extends Controller
+{
+    function getuser(){
+return Client::all()->count();
+    }
+}
+
+
+
+
+
+
+
+WEB.php
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\aggregatecontroller;
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+Route::resource("/client", ClientController::class);
+
+//calculate
+Route::get('agg',[aggregatecontroller::class,'getuser']);{
+    
+}
+
